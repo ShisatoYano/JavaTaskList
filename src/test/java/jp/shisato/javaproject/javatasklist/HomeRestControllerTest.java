@@ -21,8 +21,7 @@ class HomeRestControllerTest {
     @Test
     void requestByGet() throws Exception {
         mockMvc.perform(get("/resthello"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Hello world!!"));
+                .andExpect(status().isOk());
     }
 
     @Test

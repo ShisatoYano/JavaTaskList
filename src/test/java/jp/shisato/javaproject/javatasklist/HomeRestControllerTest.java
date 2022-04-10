@@ -55,12 +55,6 @@ class HomeRestControllerTest {
     }
 
     @Test
-    void requestByPost() throws Exception {
-        mockMvc.perform(post("/resthello"))
-                .andExpect(status().isMethodNotAllowed());
-    }
-
-    @Test
     void addItem() throws Exception {
         mockMvc.perform(get("/restadd")
                         .param("task", "Task1")

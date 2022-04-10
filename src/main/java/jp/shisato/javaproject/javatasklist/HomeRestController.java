@@ -22,7 +22,7 @@ public class HomeRestController {
         currentDateTime = dateTime;
     }
 
-    @RequestMapping(value = "/resthello", method = RequestMethod.GET)
+    @RequestMapping(value = "/resthello")
     String helloWorld() {
         return """
                 Hello world!!

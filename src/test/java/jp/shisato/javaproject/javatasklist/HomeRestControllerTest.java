@@ -18,27 +18,28 @@ class HomeRestControllerTest {
     private MockMvc mockMvc; // Mock of Spring MVC
     private final String TEST_FILE_NAME = "test_date_time.txt";
     private String dateTime;
+    private HomeRestController controller;
 
     HomeRestControllerTest() throws Exception {
         String filePath =
                 HomeRestController.class.getClassLoader()
-                        .getResource(this.TEST_FILE_NAME).getPath();
+                        .getResource(TEST_FILE_NAME).getPath();
 
         File testFile = new File(filePath);
         try (BufferedReader br = new BufferedReader(new FileReader(testFile))) {
             String text;
             while ((text = br.readLine()) != null) {
-                this.dateTime = text;
+                dateTime = text;
             }
         }
     }
 
     @BeforeEach
-    void settingMock() throws Exception {
-        HomeRestController controller = new HomeRestController();
-        controller.setDateTime(this.dateTime);
+    void settingMock() {
+        controller = new HomeRestController();
+        controller.setDateTime(dateTime);
 
-        this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
@@ -49,7 +50,7 @@ class HomeRestControllerTest {
                         """
                         Hello world!!
                         Current time is %s.
-                        """.formatted(this.dateTime)
+                        """.formatted(dateTime)
                 ));
     }
 
@@ -57,5 +58,19 @@ class HomeRestControllerTest {
     void requestByPost() throws Exception {
         mockMvc.perform(post("/resthello"))
                 .andExpect(status().isMethodNotAllowed());
+    }
+
+    @Test
+    void addItem() throws Exception {
+        mockMvc.perform(get("/restadd")
+                        .param("task", "Task1")
+                        .param("deadline", "2022-04-10"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void listItems() throws Exception {
+        mockMvc.perform(get("/restlist"))
+                .andExpect(status().isOk());
     }
 }

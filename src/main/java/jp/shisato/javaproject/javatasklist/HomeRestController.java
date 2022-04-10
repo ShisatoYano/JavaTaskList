@@ -8,11 +8,21 @@ import java.time.LocalDateTime;
 
 @RestController
 public class HomeRestController {
+    private String currentDateTime;
+
+    HomeRestController() {
+        this.currentDateTime = LocalDateTime.now().toString();
+    }
+
+    public void setDateTime(String dateTime) {
+        this.currentDateTime = dateTime;
+    }
+
     @RequestMapping(value = "/resthello", method = RequestMethod.GET)
     String helloWorld() {
         return """
                 Hello world!!
                 Current time is %s.
-                """.formatted(LocalDateTime.now());
+                """.formatted(this.currentDateTime);
     }
 }

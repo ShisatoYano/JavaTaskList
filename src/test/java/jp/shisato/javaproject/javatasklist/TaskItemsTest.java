@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskItemsTest {
+    @Test
+    void item() {
+        TaskItems taskItems = new TaskItems();
+        assertNull(taskItems.item(0));
+    }
 
     @Test
     void add() {

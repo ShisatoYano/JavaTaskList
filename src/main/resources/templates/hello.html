@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--Declaration as Thymeleaf template-->
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello world!!</title>
+  </head>
+
+  <body>
+    <h1>Hello world!!</h1>
+    <!--Replace content by template engine dynamically-->
+    <!--Variable "${time}" can be set from Java program-->
+    Current time is <span th:text="${time}"></span>.
+  </body>
+</html>

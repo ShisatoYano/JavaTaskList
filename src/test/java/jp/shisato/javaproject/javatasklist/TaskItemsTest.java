@@ -2,6 +2,8 @@ package jp.shisato.javaproject.javatasklist;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskItemsTest {
@@ -18,6 +20,14 @@ class TaskItemsTest {
         assertEquals("Task1", taskItems.item(0).task());
         assertEquals("2022-04-10", taskItems.item(0).deadline());
         assertFalse(taskItems.item(0).done());
+    }
+
+    @Test
+    void items() {
+        TaskItems taskItems = new TaskItems();
+        taskItems.add("Task1", "2022-04-10");
+        assertEquals("Task1", taskItems.items().get(0).task());
+        assertEquals("2022-04-10", taskItems.items().get(0).deadline());
     }
 
     @Test

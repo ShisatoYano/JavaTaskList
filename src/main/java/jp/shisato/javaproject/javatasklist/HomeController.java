@@ -2,23 +2,25 @@ package jp.shisato.javaproject.javatasklist;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.time.LocalDateTime;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
-    private LocalDateTime currentDateTime;
+    private TaskItems taskItems;
 
-    HomeController() {
-        currentDateTime = LocalDateTime.now();
+    HomeController() { taskItems = new TaskItems(); }
+
+    @GetMapping("/list")
+    String listItems(Model model) {
+        model.addAttribute("taskList", taskItems.items());
+        return "home";
     }
 
-    public void setDateTime(LocalDateTime dateTime) { currentDateTime = dateTime; }
-
-    @RequestMapping(value = "/hello")
-    String helloWorld(Model model) {
-        model.addAttribute("time", LocalDateTime.now());
-        return "hello";
+    @GetMapping("/add")
+    String addItem(@RequestParam("task") String task,
+                   @RequestParam("deadline") String deadline) {
+        taskItems.add(task, deadline);
+        return "redirect:/list";
     }
 }

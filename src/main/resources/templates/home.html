@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--Declaration as Thymeleaf template-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List Manager</title>
+</head>
+
+<body>
+    <h1>Task List Manager</h1>
+
+    <div class="task_form">
+        <h2>Register task</h2>
+
+        <form action="/add">
+            <label>Task</label>
+            <input name="task" type="text" />
+            <label>Deadline</label>
+            <input name="deadline" type="date" />
+            <input type="submit" value="register" />
+        </form>
+    </div>
+
+    <div class="tasklist">
+        <h2>Current task list</h2>
+
+        <!-- Attribute "border" is to display borderline of table -->
+        <!-- border="0": Not displayed, "1": displayed -->
+        <!-- If you want to make line bolder, you can set bigger than "1" -->
+        <!-- You can change the style of line by setting "border-collapse" -->
+        <!-- Borderline can be changed as single line by setting to "collapse" -->
+        <table border="1" style="border-collapse:collapse;">
+            <!-- "tr" define row of table -->
+            <thead> <!-- "thead" define header of table -->
+                <tr><th class="hidden">ID</th><th>Task</th><th>Deadline</th><th>Status</th></tr>
+            </thead>
+            <tbody> <!-- "tbody" define body of table -->
+                <tr th:each="task : ${taskList}"> <!-- "th:each" define iteration -->
+                    <td class="hidden" th:text="${task.id}"></td>
+                    <td th:text="${task.task}"></td>
+                    <td width="100px" th:text="${task.deadline}"></td>
+                    <td width="50px" th:text="${task.done} ? 'Complete' : 'Incomplete'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

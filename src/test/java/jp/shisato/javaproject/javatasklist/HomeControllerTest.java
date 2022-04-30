@@ -2,23 +2,29 @@ package jp.shisato.javaproject.javatasklist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@SpringBootTest
 class HomeControllerTest {
     private MockMvc mockMvc; // Mock of Spring MVC
+    private final TaskListDao dao;
     private HomeController controller;
 
-    HomeControllerTest() {
-        controller = new HomeController();
+    @Autowired
+    HomeControllerTest(TaskListDao dao) {
+        this.dao = dao;
+        this.controller = new HomeController(this.dao);
     }
 
     @BeforeEach
     void settingMock() {
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(this.controller).build();
     }
 
     @Test

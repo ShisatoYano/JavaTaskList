@@ -33,7 +33,13 @@
         <table border="1" style="border-collapse:collapse;">
             <!-- "tr" define row of table -->
             <thead> <!-- "thead" define header of table -->
-                <tr><th class="hidden">ID</th><th>Task</th><th>Deadline</th><th>Status</th></tr>
+                <tr>
+                    <th class="hidden">ID</th>
+                    <th>Task</th>
+                    <th width="150px">Deadline</th>
+                    <th width="100px">Status</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody> <!-- "tbody" define body of table -->
                 <tr th:each="task : ${taskList}"> <!-- "th:each" define iteration -->
@@ -41,6 +47,12 @@
                     <td th:text="${task.task}"></td>
                     <td width="100px" th:text="${task.deadline}"></td>
                     <td width="50px" th:text="${task.done} ? 'Complete' : 'Incomplete'"></td>
+                    <td width="50px">
+                        <form action="/delete">
+                            <button type="submit" id="delete_button">Delete</button>
+                            <input type="hidden" name="id" th:value="${task.id}" />
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -1,6 +1,6 @@
 package jp.shisato.javaproject.javatasklist;
 
-import jp.shisato.javaproject.javatasklist.TaskItems.TaskItem;
+import jp.shisato.javaproject.javatasklist.TaskListDao.TaskItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,5 @@
 package jp.shisato.javaproject.javatasklist;
 
-import jp.shisato.javaproject.javatasklist.TaskItems.TaskItem;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -15,6 +13,7 @@ import java.util.Map;
 @Service
 public class TaskListDao {
     private final JdbcTemplate jdbcTemplate;
+    record TaskItem(String id, String task, String deadline, boolean done) {}
 
     @Autowired
     TaskListDao(JdbcTemplate jdbcTemplate) {

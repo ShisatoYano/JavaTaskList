@@ -40,4 +40,23 @@ class HomeControllerTest {
                         .param("deadline", "2022-04-10"))
                 .andExpect(status().isFound());
     }
+
+    @Test
+    void updateItem() throws Exception {
+        mockMvc.perform(get("/update")
+                        .param("id", "10000")
+                        .param("task", "Task2")
+                        .param("deadline", "2022-04-17")
+                        .param("done", "true"))
+                .andExpect(status().isFound());
+    }
+
+    @Test
+    void deleteItem() throws Exception {
+        String targetId = dao.getId(0);
+
+        mockMvc.perform(get("/delete")
+                        .param("id", targetId))
+                .andExpect(status().isFound());
+    }
 }

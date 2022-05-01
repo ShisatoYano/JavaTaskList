@@ -43,6 +43,14 @@ public class TaskListDao {
         return taskItems;
     }
 
+    public String getId(int index) {
+        List<TaskItem> taskItems = findAll();
+
+        if (taskItems.size() <= 0) { return "-1"; }
+
+        return taskItems.get(index).id().toString();
+    }
+
     public int delete(String id) {
         int number = jdbcTemplate.update("DELETE FROM tasklist WHERE id = ?", id);
 

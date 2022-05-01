@@ -54,7 +54,9 @@ public class HomeController {
                       @RequestParam("deadline") String deadline,
                       @RequestParam("done") boolean done) {
         TaskItem taskItem = new TaskItem(id, task, deadline, done);
+
         dao.update(taskItem);
+
         return "redirect:/list";
     }
 }

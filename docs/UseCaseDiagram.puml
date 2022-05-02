@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+
+:User:
+:TaskManagementDB:
+
+package "Task Management" {
+    User --> (Register Task)
+    (Register Task) --> TaskManagementDB
+
+    User --> (Refer to Task)
+    (Refer to Task) --> TaskManagementDB
+
+    User --> (Edit Task)
+    (Edit Task) --> TaskManagementDB
+
+    User --> (Delete Task)
+    (Delete Task) --> TaskManagementDB
+}
+@enduml

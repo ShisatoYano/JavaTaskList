@@ -1,0 +1,8 @@
+@startuml
+enum "Task Management DB" {
+    Task List ID
+    Task Name
+    Deadline
+    Status
+}
+@enduml

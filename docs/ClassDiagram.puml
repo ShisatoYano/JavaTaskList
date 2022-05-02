@@ -1,8 +1,10 @@
 @startuml
-enum "Task Management DB" {
-    Task List ID
-    Task Name
-    Deadline
-    Status
+package "Task Management DB" {
+    enum "Task List" {
+        Task List ID
+        Task Name
+        Deadline
+        Status
+    }
 }
 @enduml
